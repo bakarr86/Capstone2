@@ -7,7 +7,131 @@
     <title>Vite + React</title>
   </head>
   <body>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
+
+  <style>
+    div.at-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    .at-item {
+        color: #ed3046; font-weight:bold; font-size:3em;
+        
+        animation-name: focus-in-contract;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: none;
+            
+        /* shorthand
+        animation: focus-in-contract 1s linear 0s 1 normal none;*/
+    }
+    @keyframes focus-in-contract {
+            
+        0% {
+            letter-spacing:1em;
+            filter:blur(12px);
+            opacity:0;
+        }
+        100% {
+            filter:blur(0);
+            opacity:1;
+        }
+    }
+</style>
+<div class='at-container'>
+    <div class='at-item' ><i>EnjoyYourselfEntertainment</i></div>
+</div>
+
+<div id="box">WELCOME</div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div class="container-fluid">
+  <a class="navbar-brand" href="#">HOME</a>
+  
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="services.html" class="nav-link active" aria-current="page" href="#">SERVICES</a>
+        
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">REVIEWS</a>
+      </li>
+      <li class="nav-item">
+        <a href="contact.html" class="nav-link" href="#">CONTACT</a>
+      </li>
+     
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="https://www.facebook.com/">Facebook</a></li>
+          
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+  </div>`
+</div>
+</nav>
+<button type="button"><span>Login/Register</span></button>
+<p>
+<p class="left"> Enjoy Youurself Entertainment aims to provide top notch customer service experience with every event.</p>
+<p>We are located in Atlanta, GA and we offer service all around the United States.  </p>
+<p class="intro">We are rated the #1 Entertainment company in the South.</p>
+
+
+
+<h3> The Team</h3>
+<table border="3">
+<tr>
+            
+            <th>DJ'S</th>
+            <th>MC'S</th>
+            <th>Photo Both Operators</th>
+            <th>Managment</th>
+            
+        </tr>
+
+        <tr>
+            <td> Dj PrimeTime</td>
+            <td>Fly Guy DC</td>
+            <td>William</td>
+            <td>Bakarr</td>
+            
+
+        </tr>
+        
+    </table>
+    
+    
+    
+
+    </form>
+<img src="https://gifdb.com/images/high/awkward-dj-clubbing-e0mnh96log031pc3.gif">
+
+
+
+
+<h4><label for="social media">How did you hear about Us? :</label><h4>
+<select name="dog-names" id="dog-names"> <option value="rigatoni"></option>
+<option value="dave">Instagram <a href="instagram.com"></a></option>
+<option value="pumpernickel">Tic tok</option>
+<option value="reeses">Refferal</option>
+<option value="reeses">Employee</option>
+<option value="reeses">Facebook</option>
+</select>
 </html>
