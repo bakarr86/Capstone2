@@ -7,14 +7,17 @@ import SavedTracks from './SavedTracks';
 import MusicSearch from './pages/MusicSearch';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-  
-    
-    </>
-  )
-}
-
+  <Router>
+  <Navbar />
+  <Switch>
+  <Route exact path="/" component={Home} />
+  <Route path="/login" component={Login} />
+  <Route path="/register" component={Register} />
+  <Route path="/search" component={MusicSearch} />
+  <Route path="/saved" component={SavedTracks} />
+  </Switch>
+  </Router>
+  );
+  }
 export default App
