@@ -1,0 +1,11 @@
+import { Link, useHistory } from 'react-router-dom';
+import './Navbar.css';
+
+function Navbar() {
+  const history = useHistory();
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    history.push('/');
+  };
