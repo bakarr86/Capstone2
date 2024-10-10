@@ -20,3 +20,19 @@ function Register() {
         setError(error.response.data.message || 'An error occurred during registration');
       }
     };
+
+    // return section starting with the username input return (
+        <div className="register-container">
+        <h2>Register</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
