@@ -61,3 +61,8 @@
   button:hover {
     background-color: #0056b3;
   }
+
+  /* Form group for labels and inputs */
+  .form-group {
+    margin-bottom: 15px;
+  }
