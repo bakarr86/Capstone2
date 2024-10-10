@@ -82,3 +82,13 @@
     margin-bottom: 10px;
     text-align: center;
   }
+
+  /* Register container styling */
+  .register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
