@@ -1,49 +1,56 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import './Login.css'; // Optional custom CSS for the login page
+import { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import "./Login.css";
 
+function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useHistory();
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const handleLogin = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Store username and password in localStorage
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
 
-    // Redirect to the main app page
-    navigate("/app");
+      // Check if the response contains a token
+      if (response.data.token) {
+        // Save the token to localStorage
+        localStorage.setItem('token', response.data.token);
+        console.log('Token saved:', response.data.token);
+
+        // Navigate to the SpotifySearch page
+        history.push('/SpotifySearch');
+      } else {
+        console.error('Token not found in response');
+      }
+    } catch (error) {
+      console.error('Login error:', error.response?.data || error.message);
+    }
   };
 
   return (
-    <div className="login-container">
+    <div>
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn">Login</button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
       </form>
     </div>
   );
-};
+}
 
 export default Login;

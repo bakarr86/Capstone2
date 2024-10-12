@@ -1,15 +1,15 @@
-/* General container styling for both forms */
-.container {
+/* General container styling for the register form */
+.register-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    min-height: 60vh;
+    background-color: #f7f9fc;
     padding: 20px;
   }
   
-  /* Form container styling */
+  /* Form styling */
   form {
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
     border-radius: 8px;
   }
   
-  /* Headings */
+  /* Heading */
   h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -48,7 +48,7 @@
   }
   
   /* Button styles */
-  button {
+  .btn-primary {
     padding: 10px;
     background-color: #007bff;
     color: #ffffff;
@@ -59,7 +59,7 @@
     margin-top: 10px;
   }
   
-  button:hover {
+  .btn-primary:hover {
     background-color: #0056b3;
   }
   
@@ -82,14 +82,4 @@
     font-size: 14px;
     margin-bottom: 10px;
     text-align: center;
-  }
-  
-  /* Register container styling */
-  .register-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f8f9fa;
   }

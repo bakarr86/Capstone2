@@ -3,9 +3,8 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import SavedTracks from './SavedTracks';
-import MusicSearch from './pages/MusicSearch';
-
+import MusicSearch from './pages/MusicSearch'
+import SavedTracks from './pages/SavedTracks'
 function App() {
   return (
   <Router>

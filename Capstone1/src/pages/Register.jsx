@@ -1,38 +1,59 @@
-//Register import
-import  { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import "./register.css"
+import './register.css'
 
-// register state and submit set up 
-function Register() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const history = useHistory();
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        await axios.post('/api/auth/register', { username, password });
-        history.push('/login');
-      } catch (error) {
-        setError(error.response.data.message || 'An error occurred during registration');
-      }
-    };
+const Register = () => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useHistory(); // Hook for history navigation
 
-    // return section starting with the username input return (
-        <div className="register-container">
-        <h2>Register</h2>
-        {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/register', {
+        username,
+        email,
+        password
+      });
+
+      console.log(response.data.message); // Log the server message
+
+      // Navigate to /login after successful registration
+      history.push('/login');
+    } catch (error) {
+      console.error('Error registering user:', error.response?.data || error.message);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button type="submit">Register</button>
+    </form>
+  );
+};
+
+export default Register;
