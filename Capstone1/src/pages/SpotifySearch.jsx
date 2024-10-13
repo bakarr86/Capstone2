@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const SpotifySearch = () => {
   const [query, setQuery] = useState('');
   const [albums, setAlbums] = useState([]);
   const [error, setError] = useState('');
   const [userId, setUserId] = useState('');
+  const [savedAlbums, setSavedAlbums] = useState({}); // State to track saved status for each album
 
-  const clientId = ''; // Replace with your actual client ID
-  const clientSecret = ''; // Replace with your actual client secret
+  const clientId = '1195f3d68a894893a9aa93c08607facf'; // Replace with your actual client ID
+  const clientSecret = 'b8c0425f847f4958978e684144402bfb'; // Replace with your actual client secret
+
 
   // Function to get the access token
   const getAccessToken = async () => {
@@ -66,28 +69,35 @@ const SpotifySearch = () => {
   const handleSave = async (album) => {
     // Collect the required data
     const albumData = {
-        userId,
-        spotifyId: album.id,
-        name: album.name,
-        artist: album.artists[0]?.name,
-        album: album.name,
-        imageUrl: album.images[0]?.url,
+      userId,
+      spotifyId: album.id,
+      name: album.name,
+      artist: album.artists[0]?.name,
+      album: album.name,
+      imageUrl: album.images[0]?.url,
     };
 
     console.log('Saving album:', albumData);
 
     try {
-        const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-        const response = await axios.post('http://localhost:5000/api/music', albumData, {
-            headers: {
-                token: token, // Include the token in the headers
-            },
-        });
-        console.log('Response from server:', response.data);
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      const response = await axios.post('http://localhost:5000/api/music', albumData, {
+        headers: {
+          token: token, // Include the token in the headers
+        },
+      });
+
+      console.log('Response from server:', response.data);
+
+      // Update saved status for the album
+      setSavedAlbums((prev) => ({
+        ...prev,
+        [album.id]: true, // Mark the album as saved
+      }));
     } catch (error) {
-        console.error('Error saving album:', error.response ? error.response.data : error.message);
+      console.error('Error saving album:', error.response ? error.response.data : error.message);
     }
-};
+  };
 
   // Function to ignore album
   const handleIgnore = (album) => {
@@ -164,8 +174,9 @@ const SpotifySearch = () => {
                     borderRadius: '20px',
                     padding: '5px 10px'
                   }}
+                  disabled={savedAlbums[album.id]} // Disable button if already saved
                 >
-                  Save
+                  {savedAlbums[album.id] ? 'Saved' : 'Save'}
                 </button>
                 <button
                   onClick={() => handleIgnore(album)}
@@ -181,6 +192,12 @@ const SpotifySearch = () => {
           ))}
         </ul>
       </div>
+      {/* Link to Saved Tracks */}
+      <Link to="/saved">
+        <button style={{ marginTop: '20px', padding: '10px', borderRadius: '5px' }}>
+          Go to Saved Tracks
+        </button>
+      </Link>
     </div>
   );
 };

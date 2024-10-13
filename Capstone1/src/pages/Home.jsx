@@ -3,7 +3,7 @@ import "./Home.css"
 function Home() {
     return (
       <div className="home-container">
-        <h1>Welcome to Spotify Music Selector</h1>
+        <h1>Welcome to EnjoyYourself Entertainment</h1>
         <p>Find and save your favorite tracks from Spotify!</p>
         <div className="cta-buttons">
           <Link to="/search" className="btn-primary">

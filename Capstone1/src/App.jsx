@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MusicSearch from './pages/MusicSearch'
 import SavedTracks from './pages/SavedTracks'
+import SpotifySearch from './pages/SpotifySearch';
 function App() {
   return (
   <Router>
@@ -15,6 +16,7 @@ function App() {
   <Route path="/register" component={Register} />
   <Route path="/search" component={MusicSearch} />
   <Route path="/saved" component={SavedTracks} />
+  <Route path="/SpotifySearch" component={SpotifySearch} />
   </Switch>
   </Router>
   );
