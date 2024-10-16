@@ -243,8 +243,73 @@ app.delete('/api/music/tracks/:trackId', authenticateJWT,async (req, res) => {
 });
 
 
+app.get('/api/admin/users', authenticateJWT, async (req, res) => {
+  try {
+    // Find the authenticated user by ID
+    const user = await User.findById(req.userId);
 
+    // Check if the user is an admin
+    // if (user.role !== 'admin') {
+    //   return res.status(403).json({ message: 'Access denied. Admins only.' });
+    // }
+
+    // Find all users and select only their username and email
+    const users = await User.find().select('username email');
+
+    // Map through the users to create a list of their usernames and emails
+    const userList = users.map(user => ({
+      username: user.username,
+      email: user.email
+    }));
+
+    // Return the list of usernames and emails
+    res.status(200).json({ users: userList });
+  } catch (error) {
+    console.error('Error fetching user information:', error);
+    res.status(500).json({ message: 'Error fetching user information' });
+  }
+});
+
+
+// Authentication middleware
+const authenticate = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  
+  if (!token) {
+    return res.status(403).json({ message: 'No token provided' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    req.userId = decoded.id; // Attach user ID to the request
+    next();
+  });
+};
+
+// Route to get user songs
+app.get('/api/users/:username/songs', authenticate, async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    // Find the user by username
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Assuming you have a relationship where User has saved songs
+    const songs = await Track.find({ userId: user._id }); // Adjust based on your schema
+
+    return res.status(200).json({ songs });
+  } catch (err) {
+    console.error('Error fetching user songs:', err);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 // Other routes and server setup...
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)});
+

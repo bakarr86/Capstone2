@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import MusicSearch from './pages/MusicSearch'
 import SavedTracks from './pages/SavedTracks'
+import AdminSaved from './pages/Admin'
 import SpotifySearch from './pages/SpotifySearch';
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
   <Route path="/search" component={MusicSearch} />
   <Route path="/saved" component={SavedTracks} />
   <Route path="/SpotifySearch" component={SpotifySearch} />
+  <Route path="/Adminsaved" component={AdminSaved} />
   </Switch>
   </Router>
   );

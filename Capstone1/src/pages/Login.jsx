@@ -20,7 +20,16 @@ function Login() {
         console.log('Token saved:', response.data.token);
 
         // Navigate to the SpotifySearch page
+
+         if (username==="ADMIN" && password=="ADMIN"){
+          history.push('/Adminsaved');
+          return
+         }
+
         history.push('/SpotifySearch');
+
+
+
       } else {
         console.error('Token not found in response');
       }
