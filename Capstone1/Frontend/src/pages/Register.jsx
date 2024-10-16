@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await axios.post('https://capstone2-s52e.onrender.com/api/auth/register', {
         username,
         email,
         password

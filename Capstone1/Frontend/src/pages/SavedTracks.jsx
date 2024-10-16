@@ -13,7 +13,7 @@ function SavedTracks() {
 
   const fetchSavedTracks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/music/tracks', {
+      const response = await axios.get('https://capstone2-s52e.onrender.com/api/music/tracks', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTracks(response.data);
@@ -27,7 +27,7 @@ function SavedTracks() {
 
   const deleteTrack = async (trackId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/music/tracks/${trackId}`, {
+      await axios.delete(`https://capstone2-s52e.onrender.com/api/music/tracks/${trackId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Remove the deleted track from the state

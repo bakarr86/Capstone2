@@ -11,7 +11,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+      const response = await axios.post('https://capstone2-s52e.onrender.com/api/auth/login', { username, password });
 
       // Check if the response contains a token
       if (response.data.token) {

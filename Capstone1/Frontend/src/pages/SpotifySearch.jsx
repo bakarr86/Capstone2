@@ -81,7 +81,7 @@ const SpotifySearch = () => {
 
     try {
       const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-      const response = await axios.post('http://localhost:5000/api/music', albumData, {
+      const response = await axios.post('https://capstone2-s52e.onrender.com/api/music', albumData, {
         headers: {
           token: token, // Include the token in the headers
         },
